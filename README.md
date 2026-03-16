@@ -23,15 +23,46 @@
 
 ---
 
-
 ---
 
 ## Quick Start
 
 [![Download](https://img.shields.io/badge/download-v1.0.1-blue)](https://github.com/Raskollnikov/Paper_Wallet/releases/tag/v1.0.1)
 
+[![VIDEO](https://img.shields.io/badge/video-guide-red)](https://www.youtube.com/watch?v=xs8KU_F5JaQ&t=869s)
 
-```
+## SCREENSHOTS
+
+![screenshot](images/ui_1.png)
+![screenshot](images/ui_2.png)
+![screenshot](images/ui_3.png)
+
+![screenshot](images/ui_10.png)
+![screenshot](images/ui_11.png)
+![screenshot](images/ui_12.png)
+![screenshot](images/ui_15.png)
+
+![screenshot](images/verify_1.png)
+![screenshot](images/verify_2.png)
+![screenshot](images/verify_3.png)
+![screenshot](images/verify_4.png)
+![screenshot](images/verify_5.png)
+![screenshot](images/verify_6.png)
+
+![screenshot](images/verify_7.png)
+![screenshot](images/verify_8.png)
+![screenshot](images/verify_9.png)
+![screenshot](images/verify_10.png)
+![screenshot](images/verify_11.png)
+![screenshot](images/verify_12.png)
+![screenshot](images/verify_13.png)
+![screenshot](images/verify_14.png)
+
+![screenshot](images/verify_16.png)
+![screenshot](images/verify_18.png)
+![screenshot](images/verify_19.png)
+
+``
 the generator is designed to be used in an offline environment only
 
 Recommended workflow:
@@ -52,7 +83,6 @@ https://github.com/Raskollnikov/Paper_Wallet/releases/tag/v1.0.1
 SHA256 of index.html:
 
 ## 667179349d86ff24fcf7be84930d74314bc591744d20f68d907e72e58f7e9dd8
-
 
 Before using the generator, verify that the file was not modified
 
@@ -91,21 +121,25 @@ Generate wallets
 ```
 ![screenshot](images/image1.png)
 
+![screenshot](images/image1.png)
+
 ---
 
 ## File Structure
 
 ```
+
 btc-paper-wallet/ for overal testing
-├── index.html          <- Open this in your browser - entire UI lives here
+├── index.html <- Open this in your browser - entire UI lives here
 ├── css/
-│   └── style.css       <- All UI styling
+│ └── style.css <- All UI styling
 ├── js/
-│   ├── wallet.js       <- Cryptographic engine (BIP39/32/44/49/84)
-│   └── wordlist.js     <- 2048 BIP39 English words
+│ ├── wallet.js <- Cryptographic engine (BIP39/32/44/49/84)
+│ └── wordlist.js <- 2048 BIP39 English words
 ├── testing/
-│   └── test.js         <- Full test suite (Node.js, 58 tests)
+│ └── test.js <- Full test suite (Node.js, 58 tests)
 └── README.md
+
 ```
 
 ---
@@ -125,16 +159,17 @@ btc-paper-wallet/ for overal testing
 ### Entropy pipeline
 
 ```
-crypto.getRandomValues(32 bytes)    <- OS-level CSPRNG (primary, always used)
-         +
-Mouse movement coordinates          <- mixed in via SHA-256
+
+crypto.getRandomValues(32 bytes) <- OS-level CSPRNG (primary, always used) +
+Mouse movement coordinates <- mixed in via SHA-256
 Performance.now() microsecond jitter
-         │
-         ▼
+│
+▼
 SHA-256(csprng ‖ mouseEntropy ‖ timestamp)
-         │
-         ▼
+│
+▼
 entropyToMnemonic() -> BIP39 mnemonic
+
 ```
 
 The CSPRNG alone provides the full 128 or 256 bits required. Mouse entropy is defense-in-depth only - it cannot reduce security below CSPRNG level
@@ -142,67 +177,69 @@ The CSPRNG alone provides the full 128 or 256 bits required. Mouse entropy is de
 ### Dice entropy (optional)
 
 ```
-Physical dice rolls → base-6 bigint → 32 bytes
-         +
-Fresh crypto.getRandomValues()
-         +
+
+Physical dice rolls → base-6 bigint → 32 bytes +
+Fresh crypto.getRandomValues() +
 Per-wallet nonce (walletIndex as 4-byte uint)
-         │
-         ▼
+│
+▼
 SHA-256(csrng ‖ diceBytes ‖ index) → entropy
+
 ```
 
 ### String entropy (deterministic)
 
 ```
+
 User-supplied string (UTF-8 encoded)
-         │
-         ▼
-SHA-256(UTF-8(string))              <- 32-byte hash, all bytes used
-         │
-         ▼
-First 16 bytes → 12-word mnemonic  (128-bit entropy)
-First 32 bytes → 24-word mnemonic  (256-bit entropy)
-         │
-         ▼
+│
+▼
+SHA-256(UTF-8(string)) <- 32-byte hash, all bytes used
+│
+▼
+First 16 bytes → 12-word mnemonic (128-bit entropy)
+First 32 bytes → 24-word mnemonic (256-bit entropy)
+│
+▼
 entropyToMnemonic() → BIP39 mnemonic
 
 For batch generation (quantity > 1):
 SHA-256(UTF-8(string ‖ \x00 ‖ uint32(walletIndex)))
-         │
-         ▼
+│
+▼
 Same pipeline - each wallet index produces a unique, reproducible mnemonic
 
 No CSPRNG involved. Same string always produces the same wallet.
 Security depends entirely on string unpredictability - short or common
 strings are catastrophically weak. 50+ random characters recommended.
+
 ```
 
 ## Dice entropy - deterministic mode
 
 ```
+
 Physical dice rolls [1–6] × 50–150
-         │
-         ▼
-Base-6 bigint conversion            <- unbiased: treats full sequence as
-n = (r₀-1)·6⁹⁸ + (r₁-1)·6⁹⁷ + …    one large base-6 number, not 3-bit
-         │                             mapping (which would bias faces 1-2)
-         ▼
+│
+▼
+Base-6 bigint conversion <- unbiased: treats full sequence as
+n = (r₀-1)·6⁹⁸ + (r₁-1)·6⁹⁷ + … one large base-6 number, not 3-bit
+│ mapping (which would bias faces 1-2)
+▼
 32-byte big-endian representation
-         │
-         ▼
+│
+▼
 First 16 bytes → 12-word mnemonic
-First 32 bytes → 24-word mnemonic
-         +
+First 32 bytes → 24-word mnemonic +
 Per-wallet nonce (walletIndex as 4-byte uint32)
-         │
-         ▼
+│
+▼
 SHA-256(diceBytes[:strength] ‖ \x00 ‖ uint32(walletIndex))
-         │
-         ▼
+│
+▼
 entropyToMnemonic() → BIP39 mnemonic
 
-99 rolls  = log₂(6⁹⁹) ≈ ~256 bits  (recommended for 12-word)
+99 rolls = log₂(6⁹⁹) ≈ ~256 bits (recommended for 12-word)
 150 rolls = log₂(6¹⁵⁰) ≈ 387 bits (overkill, but fine)
 
 No CSPRNG involved. same rolls + same index always produce the same wallet.
@@ -218,11 +255,13 @@ The `walletIndex` nonce ensures that generating multiple wallets from the same d
 ### Content Security Policy
 
 ```
-default-src  'none'          ← block everything by default
-script-src   'self' 'unsafe-inline'   ← local scripts only
-style-src    'self' 'unsafe-inline'   ← local CSS only
-img-src      'self' data:    ← QR codes (base64 canvas data URLs)
-font-src     'none'          ← zero external fonts
+
+default-src 'none' ← block everything by default
+script-src 'self' 'unsafe-inline' ← local scripts only
+style-src 'self' 'unsafe-inline' ← local CSS only
+img-src 'self' data: ← QR codes (base64 canvas data URLs)
+font-src 'none' ← zero external fonts
+
 ```
 
 External network requests are **structurally impossible** even if the HTML is tampered with at rest.
@@ -230,35 +269,37 @@ External network requests are **structurally impossible** even if the HTML is ta
 ### Key lifecycle
 
 ```
+
 Entropy
-  │
-  ▼  BIP39
+│
+▼ BIP39
 12/24-word mnemonic
-  │
-  ▼  PBKDF2(mnemonic, "mnemonic" + passphrase, 2048 iter, SHA-512) → 64 bytes
+│
+▼ PBKDF2(mnemonic, "mnemonic" + passphrase, 2048 iter, SHA-512) → 64 bytes
 BIP32 root seed
-  │
-  ▼  HMAC-SHA512("Bitcoin seed", seed) → master key + chain code
-  │
-  ▼  BIP44/49/84 path derivation  m/purpose'/0'/account'/branch/index
+│
+▼ HMAC-SHA512("Bitcoin seed", seed) → master key + chain code
+│
+▼ BIP44/49/84 path derivation m/purpose'/0'/account'/branch/index
 Child private key
-  │
-  ▼  secp256k1 scalar multiplication  privkey × G
+│
+▼ secp256k1 scalar multiplication privkey × G
 Compressed public key (33 bytes)
-  │
-  ▼  RIPEMD160(SHA256(pubkey)) = hash160
-  │
-  ├─▶  Base58Check(0x00 ‖ hash160)          → Legacy  1...
-  ├─▶  Base58Check(0x05 ‖ hash160(script))  → SegWit  3...
-  └─▶  Bech32("bc", 0, hash160)             → Native  bc1q...
-  │
-  ▼
+│
+▼ RIPEMD160(SHA256(pubkey)) = hash160
+│
+├─▶ Base58Check(0x00 ‖ hash160) → Legacy 1...
+├─▶ Base58Check(0x05 ‖ hash160(script)) → SegWit 3...
+└─▶ Bech32("bc", 0, hash160) → Native bc1q...
+│
+▼
 QR codes rendered to <canvas> via inline JavaScript (no library)
-  │
-  ▼  Print / Export
-  │
-  ▼  secureWipe() - best-effort memory clear
-```
+│
+▼ Print / Export
+│
+▼ secureWipe() - best-effort memory clear
+
+````
 
 ---
 
@@ -307,7 +348,7 @@ WIF → base58 decode → private key bytes
                     → secp256k1 pubkey
                     → address re-derivation
                     → assert matches stored address
-```
+````
 
 If the round-trip fails, the wallet is wiped and an error is shown. This catches any derivation inconsistency before the user prints anything.
 
@@ -487,6 +528,8 @@ node index.js
 
 
 ```
+![Screenshot](images/image.png)
+
 ![Screenshot](images/image.png)
 
 all BIP49 and BIP84 vectors were independently verified against Ian Coleman's BIP39 tool (`iancoleman.io/bip39`) running offline
