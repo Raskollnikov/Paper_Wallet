@@ -3101,7 +3101,9 @@
             ? "44'"
             : walletType === "SEGWIT"
               ? "49'"
-              : "84'";
+              : walletType === "TAPROOT"
+                ? "86'"
+                : "84'";
 
         if (custom) {
           const base = custom.replace(/\/\d+$/, "");

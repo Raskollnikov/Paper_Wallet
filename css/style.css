@@ -448,6 +448,12 @@ select option {
   background: rgba(187, 134, 252, 0.06);
 }
 
+.badge-taproot {
+  color: #f97316;
+  border-color: #7c3a00;
+  background: rgba(249, 115, 22, 0.08);
+}
+
 .wallet-grid {
   display: grid;
   grid-template-columns: 1fr auto;
