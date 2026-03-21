@@ -31,6 +31,63 @@
 
 [![VIDEO](https://img.shields.io/badge/video-guide-red)](https://www.youtube.com/watch?v=xs8KU_F5JaQ&t=869s)
 
+```
+the generator is designed to be used in an offline environment only
+
+Recommended workflow:
+
+Download the release
+Verify the file integrity
+Transfer to an air-gapped machine
+Generate wallets offline
+Never generate wallets on a machine connected to the internet.
+
+Latest Release
+
+Latest version: v1.1.0
+
+https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.1.0
+
+SHA256 of index.html:
+
+## 3e5e86fe09cc17731b6fbc86485516918a233fc80773b80191770e494fbe6398
+
+Before using the generator, verify that the file was not modified
+
+Steps:
+
+Transfer airgap-predator-v1.1.0.html to your offline machine
+
+Open a terminal and run:
+
+sha256sum airgap-predator-v1.1.0.html
+
+Expected output:
+
+## 3e5e86fe09cc17731b6fbc86485516918a233fc80773b80191770e494fbe6398
+
+Proceed only if the hash matches exactly
+
+Recommended Environment
+For maximum security use:
+
+Recommended setup:
+
+Boot Tails from USB
+Disable WiFi and Bluetooth
+Do not mount internal disks
+Run the generator from the USB drive
+
+Usage:
+
+Boot into Tails or another air-gapped environment
+Verify the file integrity using sha256sum
+Open the file locally:
+file://airgap-predator-v1.1.0.html
+Generate wallets
+
+```
+
 ## SCREENSHOTS
 
 ![screenshot](images/ui_1.png)
@@ -62,63 +119,7 @@
 ![screenshot](images/verify_18.png)
 ![screenshot](images/verify_19.png)
 
-```
-the generator is designed to be used in an offline environment only
 
-Recommended workflow:
-
-Download the release
-Verify the file integrity
-Transfer to an air-gapped machine
-Generate wallets offline
-Never generate wallets on a machine connected to the internet.
-
-Latest Release
-
-Latest version: v1.0.1
-
-https://github.com/Raskollnikov/Paper_Wallet/releases/tag/v1.0.1
-
-
-SHA256 of index.html:
-
-## 667179349d86ff24fcf7be84930d74314bc591744d20f68d907e72e58f7e9dd8
-
-Before using the generator, verify that the file was not modified
-
-Steps:
-
-Transfer index.html to your offline machine
-
-Open a terminal and run:
-
-sha256sum index.html
-
-Expected output:
-
-## 667179349d86ff24fcf7be84930d74314bc591744d20f68d907e72e58f7e9dd8
-
-Proceed only if the hash matches exactly
-
-Recommended Environment
-For maximum security use:
-
-Recommended setup:
-
-Boot Tails from USB
-Disable WiFi and Bluetooth
-Do not mount internal disks
-Run the generator from the USB drive
-
-Usage:
-
-Boot into Tails or another air-gapped environment
-Verify the file integrity using sha256sum
-Open the file locally:
-file://index.html
-Generate wallets
-
-```
 ![screenshot](images/image1.png)
 
 ![screenshot](images/image1.png)
