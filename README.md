@@ -119,7 +119,6 @@ Generate wallets
 ![screenshot](images/verify_18.png)
 ![screenshot](images/verify_19.png)
 
-![screenshot](images/image1.png)
 
 ![screenshot](images/hash.png)
 
