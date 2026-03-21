@@ -48,7 +48,7 @@ Latest version: v1.1.0
 
 https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.1.0
 
-SHA256 of index.html:
+SHA256 of airgap-predator-v1.1.0.html:
 
 ## 3e5e86fe09cc17731b6fbc86485516918a233fc80773b80191770e494fbe6398
 
@@ -119,10 +119,9 @@ Generate wallets
 ![screenshot](images/verify_18.png)
 ![screenshot](images/verify_19.png)
 
-
 ![screenshot](images/image1.png)
 
-![screenshot](images/image1.png)
+![screenshot](images/hash.png)
 
 ---
 
@@ -193,6 +192,7 @@ Naive 3-bit mapping biases faces 1–2 twice as likely. This implementation uses
 The `walletIndex` nonce ensures that generating multiple wallets from the same dice string produces provably distinct mnemonics - even if the CSPRNG component somehow repeated.
 
 ### String entropy (deterministic)
+
 ```
 User-supplied string (UTF-8 encoded)
          │
@@ -291,7 +291,7 @@ QR codes rendered to <canvas> via inline JavaScript (no library)
 │
 ▼ secureWipe() - best-effort memory clear
 
-````
+```
 
 ---
 
@@ -340,7 +340,7 @@ WIF → base58 decode → private key bytes
                     → secp256k1 pubkey
                     → address re-derivation
                     → assert matches stored address
-````
+```
 
 If the round-trip fails, the wallet is wiped and an error is shown. This catches any derivation inconsistency before the user prints anything.
 
@@ -593,6 +593,7 @@ node index.js
   ✓ All tests passing
 
 ```
+
 ![Screenshot](images/image.png)
 
 ![Screenshot](images/image.png)
