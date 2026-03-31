@@ -25,9 +25,9 @@
 
 ---
 
-## Quick Start
+## Quick Start ( Latest Release ) 
 
-[![Download](https://img.shields.io/badge/download-v1.1.0-blue)](https://github.com/Raskollnikov/Paper_Wallet/releases/tag/v1.1.0)
+[![Download](https://img.shields.io/badge/download-v1.2.0-blue)](https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.2.0)
 
 [![VIDEO](https://img.shields.io/badge/video-guide-red)](https://www.youtube.com/watch?v=xs8KU_F5JaQ&t=869s)
 
@@ -44,27 +44,27 @@ Never generate wallets on a machine connected to the internet.
 
 Latest Release
 
-Latest version: v1.1.0
+Latest version: v1.2.0
 
-https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.1.0
+https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.2.0
 
-SHA256 of airgap-predator-v1.1.0.html:
+SHA256 of airgap-predator-v1.2.0.html
 
-## 3e5e86fe09cc17731b6fbc86485516918a233fc80773b80191770e494fbe6398
+## 0032096a1d59c61de59c998521d07e88010b426458a64a7da2bb7d23a66b2b8d
 
 Before using the generator, verify that the file was not modified
 
 Steps:
 
-Transfer airgap-predator-v1.1.0.html to your offline machine
+Transfer airgap-predator-v1.2.0.html to your offline machine
 
 Open a terminal and run:
 
-sha256sum airgap-predator-v1.1.0.html
+sha256sum airgap-predator-v1.2.0.html
 
 Expected output:
 
-## 3e5e86fe09cc17731b6fbc86485516918a233fc80773b80191770e494fbe6398
+## 0032096a1d59c61de59c998521d07e88010b426458a64a7da2bb7d23a66b2b8d
 
 Proceed only if the hash matches exactly
 
@@ -83,10 +83,13 @@ Usage:
 Boot into Tails or another air-gapped environment
 Verify the file integrity using sha256sum
 Open the file locally:
-file://airgap-predator-v1.1.0.html
+file://airgap-predator-v1.2.0.html
+
 Generate wallets
 
 ```
+** screens are still valid but it's related mostly prev releases ( 1.0 and 1.1 )  <br>
+[Latest Release](https://github.com/Raskollnikov/Fully-Air-Gapped-Bitcoin-Key-Generator/releases/tag/v1.2.0)
 
 ## SCREENSHOTS
 
